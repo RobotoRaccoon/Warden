@@ -1,0 +1,37 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+
+author: RobotoRaccoon
+main: ${project.groupId}.${project.artifactId}.Main
+
+commands:
+  warden:
+    description: The base command for the plugin
+    usage: /<command>
+
+permissions:
+  warden.bypass.books:
+    default: false
+  warden.bypass.ores:
+    default: false
+  warden.bypass.signs:
+    default: false
+  warden.bypass:
+    description: Users who bypass logging
+    default: false
+    children:
+      warden.bypass.books: true
+      warden.bypass.ores: true
+      warden.bypass.signs: true
+
+  warden.staff.ores:
+    default: op
+  warden.staff.signs:
+    default: op
+  warden.staff:
+    description: Users who are alerted
+    default: op
+    children:
+      warden.staff.ores: true
+      warden.staff.signs: true

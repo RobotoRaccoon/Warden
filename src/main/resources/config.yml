@@ -1,0 +1,77 @@
+#=#====================#=#
+#=#     BookWarden     #=#
+#=#====================#=#
+# Logs any edited or signed books directly to console or a log file
+books:
+  enabled: true
+  options:
+    write-console: false
+    write-file: true
+    log-location: false
+
+#=#====================#=#
+#=#     OreWarden      #=#
+#=#====================#=#
+# Logs all ore finds with certain criteria to staff, console, or a log file
+# Each key under ores.blocks must be the Bukkit Material name
+# Each block must have max/min heights and a radius
+# Each key in defaults may be overriden in the block config as well
+ores:
+  enabled: true
+  options:
+    write-console: true
+    write-file: true
+    ignore-creative: true
+  defaults:
+    location: true
+    light-level: true
+    worlds:
+      - world
+  blocks:
+    DIAMOND_ORE:
+      max-height: 15
+      min-height: 1
+      radius: 4
+    EMERALD_ORE:
+      max-height: 32
+      min-height: 1
+      radius: 3
+    GOLD_ORE:
+      max-height: 33
+      min-height: 1
+      radius: 4
+    IRON_ORE:
+      max-height: 67
+      min-height: 1
+      radius: 4
+
+#=#====================#=#
+#=#     SignWarden     #=#
+#=#====================#=#
+# Logs all signs to a log file
+# Logs all signs matching a regex from naughty-phrases to staff, console, or a log file
+signs:
+  enabled: true
+  options:
+    write-console: true
+    write-file: true
+    ignore-case: true
+    log-location: true
+  naughty-phrases:
+    - \bf+a+g+([eio]t)?s?\b
+    - \bnig+(er|a)s?\b
+    - \b(heil )?hitlers?\b
+    - (c|k)unts?
+    - fuc*k+?(ing|ed|d)?s?
+    - \bgay
+    - \banal\b
+    - \brap(e|ist)s?\b
+    - \bco(ck|q)s?\b
+    - \bass(s?hat|hole)?s?\b
+    - \b(sperm|jizz)\b
+    - \bsex\b
+    - \bslut(bag|face)?s?\b
+    - whore(house)?s?
+    - (?:(^| ))i\W?p\b
+    - \bpa?edo((ph|f)ile)?s?\b
+    - \bnudes\b
