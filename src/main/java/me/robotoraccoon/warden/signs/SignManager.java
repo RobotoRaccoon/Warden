@@ -17,7 +17,7 @@ public class SignManager {
 
     public static void alertSound(Player player) {
         Location loc = player.getEyeLocation();
-        Sound soundID = Sound.NOTE_PLING;
+        Sound soundID = Sound.BLOCK_NOTE_PLING;
         Double soundVolume = 1.0;
         Double soundPitch = 1.0;
 
