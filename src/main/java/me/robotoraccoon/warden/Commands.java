@@ -18,7 +18,7 @@ public class Commands implements CommandExecutor {
         }
 
         if (args.length < 1) {
-            args[0] = "";
+            args = new String[] {""};
         }
 
         switch (args[0].toLowerCase()) {
