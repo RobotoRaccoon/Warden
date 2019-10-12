@@ -1,6 +1,7 @@
 package me.robotoraccoon.warden;
 
 import me.robotoraccoon.warden.books.BookEvents;
+import me.robotoraccoon.warden.items.ItemEvents;
 import me.robotoraccoon.warden.ores.OreEvents;
 import me.robotoraccoon.warden.signs.SignEvents;
 import me.robotoraccoon.warden.logger.WardenLogger;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
         getCommand("warden").setExecutor(new Commands());
 
         pluginManager.registerEvents(new BookEvents(), this);
+        pluginManager.registerEvents(new ItemEvents(), this);
         pluginManager.registerEvents(new OreEvents(), this);
         pluginManager.registerEvents(new SignEvents(), this);
 
@@ -51,12 +53,10 @@ public class Main extends JavaPlugin {
         wardenLog = WardenLogger.setupLog(getPlugin(), "warden.log");
 
         // Flush logs to disk every 5 seconds
-        schedulerId = this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            public void run() {
-                Iterator<Handler> i = handlers.iterator();
-                while(i.hasNext()) {
-                    i.next().flush();
-                }
+        schedulerId = this.getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            Iterator<Handler> i = handlers.iterator();
+            while (i.hasNext()) {
+                i.next().flush();
             }
         }, 60L, 30L);
 
@@ -71,5 +71,4 @@ public class Main extends JavaPlugin {
     public static Plugin getPlugin() {
         return plugin;
     }
-
 }
