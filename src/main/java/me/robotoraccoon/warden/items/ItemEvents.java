@@ -34,7 +34,7 @@ public class ItemEvents implements Listener {
         // Check we're in the result slot of the Anvil area
         if (slot == 2 && slot == view.convertSlot(slot)) {
             ItemStack item = event.getCurrentItem();
-            if (item == null || !item.hasItemMeta()) return;
+            if (item == null || !item.hasItemMeta() || !item.getItemMeta().hasDisplayName()) return;
 
             String name = item.getItemMeta().getDisplayName();
             String alert = String.format(FORMAT, player.getName(), item.getAmount(), item.getType(), name);
