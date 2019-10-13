@@ -7,7 +7,7 @@ books:
   options:
     write-console: false
     write-file: true
-    log-location: false
+    log-location: true
 
 #=#====================#=#
 #=#     ItemWarden     #=#
@@ -25,7 +25,7 @@ items:
 # Logs all ore finds with certain criteria to staff, console, or a log file
 # Each key under ores.blocks must be the Bukkit Material name
 # Each block must have max/min heights and a radius
-# Each key in defaults may be overriden in the block config as well
+# Each key in defaults may be overridden in the block config as well
 ores:
   enabled: true
   options:

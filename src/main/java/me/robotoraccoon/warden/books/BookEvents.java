@@ -25,29 +25,34 @@ public class BookEvents implements Listener {
         BookMeta meta = event.getNewBookMeta();
         ConfigurationSection options = Main.getPlugin().getConfig().getConfigurationSection("books.options");
 
-        String alertLog = player.getName() + (event.isSigning() ? " signed \"" + meta.getTitle() + "\"" : " edited a book");
+        StringBuilder alert = new StringBuilder();
+        alert.append(player.getName());
+        alert.append(event.isSigning() ? " signed \"" + meta.getTitle() + "\"" : " edited a book");
 
         if (options.getBoolean("log-location")) {
             Location loc = player.getLocation();
             // Format location string
-            String logLocation = String.format("%s/%d,%d,%d",
+            alert.append(String.format(" @%s/%d,%d,%d",
                     loc.getWorld().getName(),
-                    loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()
-            );
-            alertLog += " @" + logLocation;
+                    loc.getBlockX(),
+                    loc.getBlockY(),
+                    loc.getBlockZ()
+            ));
         }
 
-        alertLog += ":";
+        alert.append(":");
 
         List<String> pages = meta.getPages();
-        for (Integer i = 0; i < pages.size(); i++) {
-            alertLog += String.format(" [%d]\"%s\"", i + 1, pages.get(i));
+        for (int i = 0; i < pages.size(); i++) {
+            String page = pages.get(i).replace("\n", " ");
+            page = page.replaceAll("§[0-9a-fklmno]", "");
+            alert.append(String.format(" [%d]\"%s\"", i + 1, page));
         }
 
         // Log to file and console, depending on config and permissions.
         if (options.getBoolean("write-console"))
-            Main.getPlugin().getLogger().info(alertLog);
+            Main.getPlugin().getLogger().info(alert.toString());
         if (options.getBoolean("write-file"))
-            Main.wardenLog.info("[Book] " + alertLog);
+            Main.wardenLog.info("[Book] " + alert.toString());
     }
 }

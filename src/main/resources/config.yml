@@ -7,7 +7,7 @@ books:
   options:
     write-console: false
     write-file: true
-    log-location: false
+    log-location: true
 
 #=#====================#=#
 #=#     ItemWarden     #=#
